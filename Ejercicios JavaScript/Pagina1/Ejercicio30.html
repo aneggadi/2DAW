@@ -1,0 +1,32 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*30. Realizar un programa que permita cargar dos listas de 3 valores cada
+            una. Informar con un mensaje cuál de las dos listas tiene un valor
+            acumulado mayor (mensajes 'Lista 1 mayor', 'Lista 2 mayor', 'Listas iguales')
+            Tener en cuenta que puede haber dos o más estructuras repetitivas en un
+            algoritmo*/
+            var lista1 = 0;
+            var lista2 = 0;
+            var i = 0;
+            while(i < 3){
+                var valor1 = parseInt(prompt("Ingrese el valor " + (i+1) + " de la lista 1: "));
+                lista1 += valor1;
+                i++;
+            }
+            i = 0;
+            while(i < 3){
+                var valor2 = parseInt(prompt("Ingrese el valor " + (i+1) + " de la lista 2: "));
+                lista2 += valor2;
+                i++;
+            }
+            if(lista1 > lista2){
+                document.writeln("Lista 1 mayor");
+            }else if(lista2 > lista1){  
+                document.writeln("Lista 2 mayor");
+            }else{
+                document.writeln("Listas iguales");
+            }
+        </script>
+    </body>
+</html>

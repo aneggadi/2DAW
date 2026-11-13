@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        Nombre: <br>
+        <input type="text" name="Nombre" id="nombre" required onfocus="comprobarNombre()" onchange="comprobarNombre()">
+        <br>
+        <span id = "mensaje"></span>
+        <br>
+        Correo: <br>
+        <input type="email" name="correo" id="correo" required>
+        <br><br>
+        Edad: <br>
+        <input type="number" name="edad" id="edad">
+        <br>
+        <select name="Modalidad" id="modalidad">
+            <option value="1">Presencial</option>
+            <option value="2">Semipresencial</option>
+            <option value="3">Online</option>
+        </select>
+        <input type="checkbox" name="Condiciones" id="Condiciones" onchange="">Condiciones
+        <br><br>
+        <button onclick="comprobar()" type="button">Inscribirse</button>
+    </form>
+    <span id = "comprobado"></span>
+    <script>
+        const nombre = document.getElementById('nombre')
+        const email = document.getElementById('email')
+        const edad = Number(document.getElementById('edad').value)
+        const modalidad = document.getElementById('modalidad')
+        const condiciones = document.getElementById('Condiciones')
+        const mensaje = document.getElementById('mensaje')
+        function comprobarNombre(){
+                mensaje.textContent = "Porfavor ingrese al menos tres valores"
+                if (length(nombre.text) > 3){
+                    mensaje.textContent = "El nombre tiene mas de 3 caracteres"
+                }
+            }
+        function comprobar(){
+            if(edad > 16 && edad < 99 &&  nombre.length > 3 && email === "@" && modalidad != -1 && condiciones.checked){
+                document.getElementById('comprobado').textContent = "Todos los campos son validos"
+            }else {
+                document.getElementById('comprobado').textContent = "Error al meter los datos"
+            }
+        }
+        
+    </script>
+</body>
+</html>

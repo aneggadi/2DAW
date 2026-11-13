@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*36. Se realiza la carga de 10 valores enteros por teclado. Se desea conocer:
+            a) La cantidad de valores negativos ingresados.
+            b) La cantidad de valores positivos ingresados.
+            c) La cantidad de múltiplos de 15.
+            d) El valor acumulado de los números ingresados que son pares.*/
+            var negativos = 0;
+            var positivos = 0;
+            var multiplos15 = 0;
+            var acumuladoPares = 0;
+
+            for(var i = 0; i < 10; i++){
+                var valor = parseInt(prompt("Ingrese el valor " + (i+1) + ": "));
+
+                if(valor < 0){
+                    negativos++;
+                }else if(valor > 0){
+                    positivos++;
+                }
+
+                if(valor % 15 === 0){
+                    multiplos15++;
+                }
+
+                if(valor % 2 === 0){
+                    acumuladoPares += valor;
+                }
+            }
+
+            document.writeln("Cantidad de valores negativos: " + negativos + "<br>");
+            document.writeln("Cantidad de valores positivos: " + positivos + "<br>");
+            document.writeln("Cantidad de múltiplos de 15: " + multiplos15 + "<br>");
+            document.writeln("Valor acumulado de los números pares: " + acumuladoPares);    
+            
+        </script>
+    </body>
+</html>

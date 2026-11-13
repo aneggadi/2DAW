@@ -1,0 +1,35 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*33. En un banco se procesan datos de las cuentas corrientes de sus
+            clientes. De cada cuenta corriente se conoce: número de cuenta, nombre
+            del cliente y saldo actual. El ingreso de datos debe finalizar al ingresar un
+            valor negativo en el número de cuenta.
+            Se pide confeccionar un programa que lea los datos de las cuentas
+            corrientes e informe:
+            a) De cada cuenta: número de cuenta, nombre del cliente y estado de
+            la cuenta según su saldo, sabiendo que:
+            Estado de la cuenta 'Acreedor' si el saldo es >0.
+             'Deudor' si el saldo es <0.
+             'Nulo' si el saldo es =0.
+            b) La suma total de los saldos acreedores.*/
+            var sumaAcreedores = 0;
+            do{
+                var numeroCuenta = parseInt(prompt("Ingrese el número de cuenta (valor negativo para finalizar): "));
+                var nombreCliente = prompt("Ingrese el nombre del cliente: ");
+                var saldo = parseFloat(prompt("Ingrese el saldo actual: "));
+                document.writeln("Número de cuenta: " + numeroCuenta + "<br>");
+                document.writeln("Nombre del cliente: " + nombreCliente + "<br>");
+                if(saldo > 0){
+                    document.writeln("Estado de la cuenta: Acreedor<br>");
+                    sumaAcreedores += saldo;
+                }else if(saldo < 0){
+                    document.writeln("Estado de la cuenta: Deudor<br>");
+                }else{
+                    document.writeln("Estado de la cuenta: Nulo<br>");
+                }
+            }while(numeroCuenta < 0);
+            document.writeln("Suma total de los saldos acreedores: " + sumaAcreedores);     
+        </script>
+    </body>
+</html>

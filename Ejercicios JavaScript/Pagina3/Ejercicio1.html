@@ -1,0 +1,47 @@
+<html>
+    <body>
+        <label for="usuario">Nombre de usuario:</label>
+        <input type="text" id="usuario" name="usuario" aria-describedby="mensaje">
+        <p id="mensaje" aria-live="polite"></p>
+
+        <script type = "text/javascript">
+            /*1. Crea un campo de texto para introducir un nombre de usuario y un mensaje
+            informativo. El programa debe:
+            ● Al entrar en el campo, mostrar: "El usuario debe tener entre 4 y 15
+            caracteres".
+            ● Mientras el usuario escribe, mostrar el número de caracteres introducidos.
+            ● Si tiene menos de 4 caracteres, indicar que es demasiado corto.
+            ● Si tiene entre 4 y 15, indicar que es válido.
+            ● Si supera los 15, indicar que ha superado el límite.
+            ● Al abandonar el campo, si está vacío, mostrar un mensaje de error*/
+
+            const campoUsuario = document.getElementById("usuario");
+            const mensaje = document.getElementById("mensaje");
+
+            campoUsuario.addEventListener("focus", function () {
+                mensaje.textContent = "El usuario debe tener entre 4 y 15 caracteres";
+            });
+
+            campoUsuario.addEventListener("input", function () {
+                const longitud = campoUsuario.value.length;
+                let estado;
+
+                if (longitud < 4) {
+                    estado = "El nombre de usuario es demasiado corto.";
+                } else if (longitud <= 15) {
+                    estado = "El nombre de usuario es válido.";
+                } else {
+                    estado = "Has superado el límite de 15 caracteres.";
+                }
+
+                mensaje.textContent = "Caracteres introducidos: " + longitud + ". " + estado;
+            });
+
+            campoUsuario.addEventListener("blur", function () {
+                if (campoUsuario.value.trim() === "") {
+                    mensaje.textContent = "Error: el nombre de usuario no puede estar vacío.";
+                }
+            });
+        </script>
+    </body>
+</html>

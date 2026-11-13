@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "image">
+            <img src = "logo.jpg" alt = "">
+            <h2>Inicia Sesion</h2>
+        </div>
+            <form action="procesar.php" method="POST">
+
+                <input type = "text" name = "user" placeholder="Tu usuario sin @" required>
+                <input type = "password" name = "password" placeholder="Contraseña" required>
+
+                <button class = "acces-btn" type = "submit">Acceder</button>
+
+                <button class = "visitor-btn" type = "submit">Entrar como invitado</button>
+                
+            </form>
+    </div>
+</body>
+</html>

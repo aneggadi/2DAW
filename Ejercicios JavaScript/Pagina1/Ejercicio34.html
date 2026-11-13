@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*34. Se realizó un censo provincial y se desea procesar la información
+            obtenida en dicho censo. De cada una de las personas censadas se tiene la
+            siguiente información: número de documento, edad y sexo ('femenino' o
+            'masculino')
+            Se pide confeccionar un programa que lea los datos de cada persona
+            censada (para finalizar ingresar el valor cero en el número de documento) e
+            informar:
+            a) Cantidad total de personas censadas.
+            b) Cantidad de varones.
+            c) Cantidad de mujeres.
+            d) Cantidad de varones cuya edad varía entre 16 y 65 años*/
+            var totalPersonas = 0;
+            var totalVarones = 0;
+            var totalMujeres = 0;
+            var totalVaronesEdad = 0;
+            do{
+                var numeroDocumento = parseInt(prompt("Ingrese el número de documento (0 para finalizar): "));
+                var edad = parseInt(prompt("Ingrese la edad: "));
+                var sexo = prompt("Ingrese el sexo ('femenino' o 'masculino'): ");
+                totalPersonas++;
+                if(sexo.toLowerCase() === "masculino"){
+                    totalVarones++;
+                    if(edad >= 16 && edad <= 65){   
+                        totalVaronesEdad++;
+                    }
+                }else if(sexo.toLowerCase() === "femenino"){
+                    totalMujeres++;
+                }
+            }while(numeroDocumento === 0);
+            document.writeln("Cantidad total de personas censadas: " + totalPersonas + "<br>");
+            document.writeln("Cantidad de varones: " + totalVarones + "<br>");
+            document.writeln("Cantidad de mujeres: " + totalMujeres + "<br>");
+            document.writeln("Cantidad de varones cuya edad varía entre 16 y 65 años: " + totalVaronesEdad);    
+            
+        </script>
+    </body>
+</html>

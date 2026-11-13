@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitor de Teclas</title>
+</head>
+<body>
+    <h1>Monitor de Teclado</h1>
+
+    <label for="campoTexto">Escribe aquí:</label><br>
+    <input type="text" id="campoTexto" placeholder="Pulsa teclas aquí..." style="width: 300px; padding: 6px; margin: 10px 0;">
+
+    <hr>
+
+    <div id="panelInfo">
+        <p><strong>Última tecla pulsada:</strong> <span id="teclaPulsada">-</span></p>
+        <p><strong>Última tecla soltada:</strong> <span id="teclaSoltada">-</span></p>
+        <p><strong>Total de pulsaciones:</strong> <span id="totalPulsaciones">0</span></p>
+        <p><strong>Contenido actual:</strong> <span id="contenidoTexto">-</span></p>
+        <p><strong>Mensaje especial:</strong> <span id="mensajeEspecial" style="color: blue;">-</span></p>
+    </div>
+
+    <script>
+        const input = document.getElementById("campoTexto");
+        const spanPulsada = document.getElementById("teclaPulsada");
+        const spanSoltada = document.getElementById("teclaSoltada");
+        const spanTotal = document.getElementById("totalPulsaciones");
+        const spanContenido = document.getElementById("contenidoTexto");
+        const spanMensaje = document.getElementById("mensajeEspecial");
+
+        let contadorPulsaciones = 0;
+
+        input.addEventListener("keydown", function(evento) {
+            const tecla = evento.key;
+            spanPulsada.textContent = tecla;
+            spanMensaje.textContent = "-";
+
+            if (tecla === "Enter") {
+                contadorPulsaciones++;
+                spanMensaje.textContent = "Has pulsado la tecla de confirmación.";
+            } 
+            else if (tecla === "Escape") {
+                input.value = "";
+                contadorPulsaciones = 0;
+                spanMensaje.textContent = "Contenido borrado y contador reiniciado.";
+            } 
+            else if (tecla === "Backspace" || tecla === "Delete") {
+                spanMensaje.textContent = "Has pulsado la tecla de borrar contenido.";
+                if (contadorPulsaciones > 0) {
+                    contadorPulsaciones--;
+                }
+            } 
+            else {
+                contadorPulsaciones++;
+            }
+
+            spanTotal.textContent = contadorPulsaciones;
+        });
+
+        input.addEventListener("keyup", function(evento) {
+            spanSoltada.textContent = evento.key;
+            spanContenido.textContent = input.value === "" ? "(vacío)" : input.value;
+        });
+    </script>
+</body>
+</html>

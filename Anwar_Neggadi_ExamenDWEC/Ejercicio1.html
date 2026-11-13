@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**/
+        var nombreProducto = []
+        var precioProducto = []
+        var cantProducto   = []
+        var precio_final_descontado = 0
+        var precio_final = 0
+        var mayor = 0
+        var numProductos = parseInt(prompt("Ingrese la cantidad de productos que deseas comprar: "))
+        for (let i = 0; i < numProductos; i++) {
+            nombreProducto[i] = prompt("Ingrese el nombre del producto: ")
+            precioProducto[i] = parseInt(prompt("Ingrese el precio del producto: "))
+            cantProducto[i]= parseInt(prompt("Ingrese la cantidad que desea del producto: "))
+        }
+        function descuento(num){
+            var descuento = 0;
+            if (num < 20){
+                return descuento
+            }else if (num < 100){
+                descuento = 5
+            }else if (num >= 100){
+                descuento = 15
+            }
+            else {document.writeln("Numero incorrecto ")}
+            return num * (descuento/100)
+        }
+        for (let n = 0; n < numProductos; n++) {
+            var precio =  precioProducto[n]*cantProducto[n]
+            document.writeln("El importe del producto " + (n+1) + " es: "  + precio + "<br>")
+            document.writeln("Y el descuento aplicado es de: " + descuento(precio) + "<br>")
+            document.writeln("Y el importe total con el descuento " + (precio - (descuento(precio))) + "<br>" )
+            precio_final += precio
+            precio_final_descontado += (precio - (descuento(precio)))
+            if (precio > mayor){
+                mayor = n
+            }
+        }
+        document.writeln("El precio final sin descuentos es: " + precio_final + "<br>")
+        document.writeln("El precio final con descuentos es: " + precio_final_descontado + "<br>")
+        document.writeln("El producto al que se le ha hecho mayor descuento es: " + nombreProducto[mayor] + "<br>")
+        if( precio_final_descontado > 250){
+            precio_final_descontado = (precio_final_descontado - (precio_final_descontado * (3/100)) )
+            document.writeln("ya que el precio final supera los 250euros se le hace un descuento extra del 3% y el precio con el descuento es: " + precio_final_descontado + "<br>")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="" id="formulario">
+        Nombre:
+        <input type="text" id="nombre"><br>
+
+        Correo electrónico:
+        <input type="text" id="correo"><br>
+        
+        Teléfono:
+        <input type="text" id="telefono"><br>
+        
+        
+        Asunto:
+        <select id="asunto">
+            <option value="">Selecciona un asunto</option>
+            <option value="consulta">Consulta</option>
+            <option value="incidencia">Incidencia</option>
+            <option value="reclamacion">Reclamación</option>
+            <option value="otro">Otro</option>
+        </select><br>
+        
+        Mensaje:
+        <textarea id="mensaje"></textarea><br>
+        <input type="checkbox" id="privacidad">
+        
+        Acepto la política de privacidad<br>
+        <input type="submit" value="Enviar">
+    </form>
+    <script>
+// Asegurarnos de que el DOM esté cargado antes de añadir el evento
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Seleccionamos el formulario (ajusta el selector si tu form tiene un ID específico, ej: '#miFormulario')
+    const formulario = document.querySelector('form');
+
+    formulario.addEventListener('submit', function(evt) {
+        
+        // Obtención de los valores de los campos
+        const nombre = document.querySelector('input[type="text"]').value;
+        const correo = document.querySelector('input[type="email"]').value; // o input[name="email"]
+        const telefono = document.querySelector('input[type="tel"]').value;  // o input[name="telefono"]
+        const asunto = document.querySelector('select').value;
+        const mensaje = document.querySelector('textarea').value;
+        const privacidad = document.querySelector('input[type="checkbox"]').checked;
+
+        // Expresión regular para detectar cadenas vacías o compuestas solo por espacios
+        const regexVacio = /^\s*$/;
+
+        // 1. Validar nombre (no vacío ni solo espacios)
+        if (regexVacio.test(nombre)) {
+            alert("Error: El nombre no puede estar vacío ni contener únicamente espacios.");
+            evt.preventDefault();
+            return;
+        }
+
+        // 2. Validar correo electrónico (formato de email básico)
+        const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!regexCorreo.test(correo)) {
+            alert("Error: Introduce un correo electrónico con un formato válido.");
+            evt.preventDefault();
+            return;
+        }
+
+        // 3. Validar teléfono (9 cifras consecutivas)
+        const regexTelefono = /^\d{9}$/;
+        if (!regexTelefono.test(telefono)) {
+            alert("Error: El teléfono debe estar formado por 9 cifras consecutivas.");
+            evt.preventDefault();
+            return;
+        }
+
+        // 4. Validar asunto (comprobar que no sea la opción por defecto)
+        // Asume que la opción "Selecciona un asunto" tiene value="" o coincide con el texto
+        if (asunto === "" || asunto === "Selecciona un asunto") {
+            alert("Error: Debes seleccionar un asunto de la lista.");
+            evt.preventDefault();
+            return;
+        }
+
+        // 5. Validar mensaje (al menos 20 caracteres y no solo espacios)
+        // Usamos trim() para eliminar espacios de los extremos y contar los caracteres reales
+        if (regexVacio.test(mensaje) || mensaje.trim().length < 20) {
+            alert("Error: El mensaje debe tener al menos 20 caracteres y no contener solo espacios.");
+            evt.preventDefault();
+            return;
+        }
+
+        // 6. Validar política de privacidad
+        if (!privacidad) {
+            alert("Error: Debes aceptar la política de privacidad para continuar.");
+            evt.preventDefault();
+            return;
+        }
+
+        // Si el código llega hasta aquí, no hay errores y el formulario se enviará normalmente.
+    });
+});
+</script>
+    
+</body>
+</html>

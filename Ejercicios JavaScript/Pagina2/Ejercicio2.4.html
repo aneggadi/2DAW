@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*4. Crear el programa para un determinado comercio en el que se realiza un descuento
+            dependiendo del precio de cada producto. Si el precio es inferior a 6 euros, no se
+            hace descuento; si es mayor o igual a 6 euros y menor que 60 euros, se hace un 5
+            por 100 de descuento, y si es mayor o igual a 60 euros, se hace un 10 por 100 de
+            descuento. Finalizar visualizando el precio inicial, el valor del descuento y el precio
+            final*/
+
+            var precio = parseInt(prompt("Introduce el precio del producto: "));
+            var precio_descuento = 0;
+            var descuento = 0;
+
+            if (precio >= 60){
+                descuento = 0.9;
+                precio_descuento = precio * descuento;
+            }else if(precio >= 6){
+                descuento = 0.95;
+                precio_descuento = precio * descuento;
+            }else{
+                precio_descuento = precio;
+            }
+
+            document.writeln("El precio introducido es: " + precio + " El descuento percivido es de: " + descuento + " El precio Final con descuento es: " + precio_descuento)
+            
+            
+        </script>
+    </body>
+</html>

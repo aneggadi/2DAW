@@ -1,0 +1,29 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*29. En una empresa trabajan 5 empleados cuyos sueldos oscilan entre 100€
+            y 500€. Realizar un programa que lea los sueldos que cobra cada empleado
+            e informe cuántos empleados cobran menos de 300€ y cuántos cobran más
+            de 300€. Además, el programa deberá informar el importe que gasta la
+            empresa en sueldos al personal.*/
+            var empleados = 0;
+            var menos300 = 0;
+            var mas300 = 0;
+            var totalSueldos = 0;
+            while (empleados < 5) {
+                var sueldo = parseInt(prompt("Ingrese el sueldo del empleado: "));
+                totalSueldos += sueldo;
+                if (sueldo < 300) {
+                    menos300++;
+                } else {
+                    mas300++;
+                }
+                empleados++;
+            }
+            document.writeln("Empleados que cobran menos de 300€: " + menos300);
+            document.writeln("Empleados que cobran más de 300€: " + mas300);
+            document.writeln("Importe que gasta la empresa en sueldos: " + totalSueldos);
+
+        </script>
+    </body>
+</html>

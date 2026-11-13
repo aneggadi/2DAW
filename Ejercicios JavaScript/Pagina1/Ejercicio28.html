@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*28. Se ingresan un conjunto de 5 alturas de personas por teclado. Mostrar la
+            altura promedio de las personas.*/
+            var personas = 0;
+            var alturaTotal = 0;
+            while (personas < 5) {
+                var alturaPersona = parseInt(prompt("Ingrese la altura de la persona: "));
+                alturaTotal += alturaPersona;
+                personas++;
+            }
+            var alturaPromedio = alturaTotal / 5;
+            document.writeln("La altura promedio de las personas es: " + alturaPromedio);             
+        </script>
+    </body>
+</html>

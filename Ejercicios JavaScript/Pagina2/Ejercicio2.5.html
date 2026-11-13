@@ -1,0 +1,128 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+        /*5. Queremos crear un programa que trabaje con funciones a/b. Para representar una
+        fracción vamos a utilizar dos enteros:
+        Vamos a crear las siguientes funciones para trabajar con fracciones:
+        leerFraccion: La tarea de esta función es leer por teclado el numerador y el
+        denominador. Cuando leas una fracción debes simplificarla. La función de
+        simplificar se verá a continuación.
+        escribirFraccion: Esta función escribe en pantalla la fracción. Si el
+        denominador es 1, se muestra solo el numerador.
+        calcularMCD: Es una función auxiliar que nos va a ayudar a realizar otras
+        funciones. Esta función recibe dos números y devuelve el máximo común
+        divisor.
+        simplificarFraccion: Esta función simplifica la fracción, para ello hay que
+        dividir el numerador y el denominador por su máximo común divisor. sumarFracciones:
+        Función que recibe dos fracciones y calcula la suma de las
+        dos fracciones.
+        restarFracciones: Función que recibe dos fracciones y calcula la resta de las
+        dos fracciones.
+        multiplicarFracciones: Función que recibe dos fracciones y calcula el
+        producto.
+        dividirFracciones: Función que recibe dos fracciones y calcula el cociente.
+        Crear un programa que utilizando las funciones anteriores muestre el siguiente menú a
+        través del mensaje del prompt():
+        1. Sumar dos fracciones: En esta opción se piden dos fracciones y se muestra
+        el resultado.
+        2. Restar dos fracciones: En esta opción se piden dos fracciones y se muestra
+        la resta.
+        3. Multiplicar dos fracciones: En esta opción se piden dos fracciones y se
+        muestra el producto.
+        4. Dividir dos fracciones: En esta opción se piden dos fracciones y se muestra
+        el cociente.
+        5. Salir
+        El menú se mostrará de forma repetida hasta que no se seleccione la opción de salir.*/
+        function leerFracciones(){
+            $numerador = parseInt(prompt("Introduzca el numerador de la fraccion: "));
+            $denominador = parseInt(prompt("Introduzca el denominador: "));
+            return { numerador: $numerador, denominador: $denominador };
+        }  
+        function escribirFraccion(fraccion){
+            if(fraccion.denominador == 1){
+                document.write(fraccion.numerador);
+            }else{
+                document.write(fraccion.numerador + "/" + fraccion.denominador);
+            }
+        }
+        function calcularMCD(a, b){
+            while(b != 0){
+                let temp = b;
+                b = a % b;  
+                a = temp;
+            }
+            return a;
+        }
+        function simplificarFraccion(fraccion){
+            let mcd = calcularMCD(fraccion.numerador, fraccion.denominador);
+            return { numerador: fraccion.numerador / mcd, denominador: fraccion.denominador / mcd };
+        }
+        function sumarFracciones(fraccion1, fraccion2){
+            let numerador = fraccion1.numerador * fraccion2.denominador + fraccion2.numerador * fraccion1.denominador;
+            let denominador = fraccion1.denominador * fraccion2.denominador;
+            return simplificarFraccion({ numerador: numerador, denominador: denominador });
+        }
+        function restarFracciones(fraccion1, fraccion2){
+            let numerador = fraccion1.numerADOR * fraccion2.denominador - fraccion2.numerADOR * fraccion1.denominador;
+            let denominador = fraccion1.denominador * fraccion2.denominador;
+            return simplificarFraccion({ numerADOR: numerADOR, denominADOR: denominADOR });
+        }
+        function multiplicarFracciones(fraccion1, fraccion2){
+            let numerADOR = fraccion1.numerADOR * fraccion2.numerADOR;
+            let denominADOR = fraccion1.denominADOR * fraccion2.denominADOR;
+            return simplificarFraccion({ numerADOR: numerADOR, denominADOR: denominADOR });
+        }
+        function dividirFracciones(fraccion1, fraccion2){
+            let numerADOR = fraccion1.numerADOR * fracción2.denominADOR;
+            let denominADOR = fracción1.denominADOR * fracción2.numerADOR;
+            return simplificarFracción({ numerADOR: numerADOR, denominADOR: denominADOR });
+        }
+        function menu(){
+            let opcion;
+            do{
+                opcion = parseInt(prompt("Seleccione una opción:\n1. Sumar dos fracciones\n2. Restar dos fracciones\n3. Multiplicar dos fracciones\n4. Dividir dos fracciones\n5. Salir"));
+                switch(opcion){
+                    case 1:
+                        let fraccion1 = leerFracciones();
+                        let fraccion2 = leerFracciones();
+                        let resultadoSuma = sumarFracciones(fraccion1, fraccion2);
+                        document.write("Resultado de la suma: ");
+                        escribirFraccion(resultadoSuma);
+                        document.write("<br>");
+                        break;
+                    case 2:
+                        let fraccion3 = leerFracciones();
+                        let fraccion4 = leerFracciones();
+                        let resultadoResta = restarFracciones(fraccion3, fraccion4);
+                        document.write("Resultado de la resta: ");
+                        escribirFraccion(resultadoResta);
+                        document.write("<br>");
+                        break;
+                    case 3:
+                        let fraccion5 = leerFracciones();
+                        let fraccion6 = leerFracciones();
+                        let resultadoMultiplicacion = multiplicarFracciones(fraccion5, fraccion6);
+                        document.write("Resultado de la multiplicación: ");
+                        escribirFraccion(resultadoMultiplicacion);
+                        document.write("<br>");
+                        break;
+                    case 4:
+                        let fraccion7 = leerFracciones();
+                        let fraccion8 = leerFracciones();
+                        let resultadoDivision = dividirFracciones(fraccion7, fraccion8);
+                        document.write("Resultado de la división: ");
+                        escribirFraccion(resultadoDivision);
+                        document.write("<br>");
+                        break;
+                    case 5:
+                        document.write("Saliendo del programa...");
+                        break;
+                    default:
+                        document.write("Opción no válida. Intente de nuevo.<br>");
+                }
+            }while(opcion != 5);
+        }
+        menu();
+        </script>
+    </body>
+</html>

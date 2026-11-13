@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*27. Escribir un programa que lea 10 notas de alumnos y nos informe
+            cuántos tienen notas mayores o iguales a 7 y cuántos menores.*/
+            var mayor = 0;
+            var menor = 0;
+            var rep = 0;
+            while(rep<=10){
+                document.write("Ingrese la nota del alumno: ");
+                var nota = parseInt(prompt("Ingrese la nota del alumno: "));
+                if(nota >= 7){
+                    mayor++;
+                }else{
+                    menor++;
+                }
+                rep++;
+            }
+            document.writeln("Alumnos con notas mayores o iguales a 7: " + mayor);
+            document.writeln("Alumnos con notas menores a 7: " + menor);
+        </script>
+    </body>
+</html>

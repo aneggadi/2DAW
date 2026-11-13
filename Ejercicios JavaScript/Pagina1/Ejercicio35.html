@@ -1,0 +1,38 @@
+
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*35. Escribir un programa que pida ingresar coordenadas (x,y) que
+            representan puntos en el plano. Informar cuántos puntos se han ingresado
+            en el primer, segundo, tercer y cuarto cuadrante. Al comenzar el programa
+            se pide que se ingrese la cantidad de puntos a procesar.
+            */
+            var cantidadPuntos = parseInt(prompt("Ingrese la cantidad de puntos a procesar: "));
+            var primerCuadrante = 0;
+            var segundoCuadrante = 0;
+            var tercerCuadrante = 0;
+            var cuartoCuadrante = 0;
+
+            for(var i = 0; i < cantidadPuntos; i++){
+                var x = parseFloat(prompt("Ingrese la coordenada x del punto " + (i+1) + ": "));
+                var y = parseFloat(prompt("Ingrese la coordenada y del punto " + (i+1) + ": "));
+
+                if(x > 0 && y > 0){
+                    primerCuadrante++;
+                }else if(x < 0 && y > 0){
+                    segundoCuadrante++;
+                }else if(x < 0 && y < 0){
+                    tercerCuadrante++;
+                }else if(x > 0 && y < 0){
+                    cuartoCuadrante++;
+                }
+            }
+
+            document.writeln("Puntos en el primer cuadrante: " + primerCuadrante + "<br>");
+            document.writeln("Puntos en el segundo cuadrante: " + segundoCuadrante + "<br>");
+            document.writeln("Puntos en el tercer cuadrante: " + tercerCuadrante + "<br>");
+            document.writeln("Puntos en el cuarto cuadrante: " + cuartoCuadrante + "<br>");
+
+        </script>
+    </body>
+</html>

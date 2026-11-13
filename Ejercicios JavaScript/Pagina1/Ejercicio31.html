@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*31. Desarrollar un programa que permita cargar 5 números enteros y luego
+            nos informe cuántos valores fueron pares y cuántos impares.
+            Emplear el operador "%" en la condición de la estructura condicional.*/
+            var pares = 0;
+            var impares = 0;
+            var i = 0;
+            while(i < 5){
+                var valor = parseInt(prompt("Ingrese el valor " + (i+1) + ": "));
+                if(valor % 2 === 0){
+                    pares++;
+                }else{
+                    impares++;
+                }
+                i++;
+            }
+            document.writeln("Valores pares: " + pares);
+            document.writeln("Valores impares: " + impares);
+        </script>
+    </body>
+</html>

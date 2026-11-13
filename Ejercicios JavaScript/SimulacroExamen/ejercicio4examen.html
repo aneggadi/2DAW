@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Compra de entradas</title>
+</head>
+<body>
+    <h1>Compra de entradas</h1>
+
+    <label for="zona">Zona:</label>
+    <select id="zona" onchange="actualizarPrecio()">
+        <option value="25">Grada - 25 €</option>
+        <option value="40">Pista - 40 €</option>
+        <option value="75">Zona VIP - 75 €</option>
+    </select>
+    <br>
+
+    <label for="cantidad">Entradas:</label>
+    <select id="cantidad" onchange="actualizarPrecio()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select>
+    <br>
+
+    <input type="checkbox" id="seguro" onchange="actualizarPrecio()">  Seguro de cancelación - 5 € por entrada
+    <br>
+    <input type="checkbox" id="camiseta" onchange="actualizarPrecio()"> Camiseta - 15 € por entrada
+    <br>
+
+    <button type="button" onclick="confirmarCompra()">Confirmar compra</button>
+    <p id="resultado"></p>
+
+    <script>
+        const zona = document.getElementById("zona");
+        const cantidad = document.getElementById("cantidad");
+        const seguro = document.getElementById("seguro");
+        const camiseta = document.getElementById("camiseta");
+        const resultado = document.getElementById("resultado");
+
+        // Dejamos la zona en blanco al iniciar para obligar al usuario a elegir una
+        zona.selectedIndex = -1;
+
+        function calcularTotal() {
+            if (zona.selectedIndex === -1) return 0;
+
+            let precio = Number(zona.value);
+            if (seguro.checked) precio += 5;
+            if (camiseta.checked) precio += 15;
+
+            return precio * Number(cantidad.value);
+        }
+
+        function actualizarPrecio() {
+            if (zona.selectedIndex !== -1) {
+                resultado.textContent = "Total: " + calcularTotal() + " €";
+            }
+        }
+
+        // Eventos para que se actualice inmediatamente al tocar cualquier control
+        //zona.onchange = actualizarPrecio;
+        //cantidad.onchange = actualizarPrecio;
+        //seguro.onchange = actualizarPrecio;
+        //camiseta.onchange = actualizarPrecio;
+
+        function confirmarCompra() {
+            // Impedir envío si existiera un evento activo
+            if (window.event) window.event.preventDefault();
+
+            // Comprobar si se ha seleccionado una zona válida
+            if (zona.selectedIndex === -1) {
+                resultado.textContent = "Error: No se ha seleccionado una zona válida.";
+                return;
+            }
+
+            const total = calcularTotal();
+            const nombreZona = zona.options[zona.selectedIndex].text;
+
+            let complementos = "Ninguno";
+            if (seguro.checked && camiseta.checked) complementos = "Seguro y Camiseta";
+            else if (seguro.checked) complementos = "Seguro de cancelación";
+            else if (camiseta.checked) complementos = "Camiseta";
+
+            let mensaje = "Resumen -> Zona: " + nombreZona + 
+                          " | Entradas: " + cantidad.value + 
+                          " | Complementos: " + complementos + 
+                          " | Precio final: " + total + " €.";
+
+            if (total > 200) {
+                mensaje += " (Aviso: Compra de importe elevado)";
+            }
+
+            resultado.textContent = mensaje;
+        }
+    </script>
+</body>
+</html>

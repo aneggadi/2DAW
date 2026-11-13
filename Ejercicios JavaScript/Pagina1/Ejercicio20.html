@@ -1,0 +1,27 @@
+<html>
+<body>
+
+    <script type="text/javascript">
+        /* 20. Escribir un programa que pida ingresar la coordenada de un punto en el
+        plano, es decir dos valores enteros x e y.
+        Posteriormente imprimir en pantalla en que cuadrante se ubica dicho punto.
+        (1 Cuadrante si x > 0 Y y > 0, 2 Cuadrante: x < 0 Y y > 0, etc.) */
+        
+        var x = parseInt(prompt("Ingresa la coordenada x:"));
+        var y = parseInt(prompt("Ingresa la coordenada y:"));
+
+        if (x > 0 && y > 0) {
+            document.write("1 Cuadrante");
+        } else if (x < 0 && y > 0) {
+            document.write("2 Cuadrante");
+        } else if (x < 0 && y < 0) {
+            document.write("3 Cuadrante");
+        } else if (x > 0 && y < 0) {
+            document.write("4 Cuadrante");
+        } else {
+            document.write("El punto se encuentra en el origen o sobre un eje");
+        }
+    </script>
+
+</body>
+</html>

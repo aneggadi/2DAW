@@ -1,0 +1,44 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            var nombre_alumnos = []
+            var notas_alumnos = []
+            var alumnos = parseInt(prompt("Ingrese el numero de alumnos: "))
+            var promedio = []
+            var cuenta_aprobados = 0
+            var cuenta_suspensos = 0
+            for (i = 0; i < alumnos;i++){
+                var nombre = prompt("Ingrese el nombre del alumno")
+                var nota = []
+                nombre_alumnos[i] = nombre
+                for (x = 0; x<3; x++){
+                    nota[x] = parseInt(prompt("Ingrese la nota del " + (x+1) + "Trimiestre"))
+                }
+                notas_alumnos[i] = nota
+            }
+            function nota_media(a){                    
+                    return ((a[0] + a[1] + a[2])/3)
+            }
+            for (n = 0;n<alumnos;n++){
+                var media = nota_media(notas_alumnos[n])
+                document.write(media + "<br>")  
+                promedio[n] = media
+            }
+
+           for (n = 0;n<alumnos;n++){
+                document.writeln(" <br>Las notas de: " + nombre_alumnos[n]+ " son: " + notas_alumnos[n] + 
+                " y la media del alumno es de: " +  promedio[n] + "<br>")
+                if (promedio[n] > 5){
+                    cuenta_aprobados += 1
+                    document.writeln(nombre_alumnos[n] + " ha aprobado")
+                }else{
+                    cuenta_suspensos += 1
+                    document.writeln(nombre_alumnos[n] + " ha suspendido")
+                }
+            }
+            document.writeln("<br> Han aprobado " + cuenta_aprobados + "<br>")
+            document.writeln("<br> Han suspendod " + cuenta_suspensos + "<br>")
+            
+        </script>
+    </body>
+</html>

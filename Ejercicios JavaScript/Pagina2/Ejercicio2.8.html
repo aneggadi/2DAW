@@ -1,0 +1,177 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+             /**8. Una tienda quiere desarrollar un pequeño programa para gestionar el stock de los
+            productos de su almacén. El programa debe utilizar dos arrays:
+            ● Un array con los nombres de los productos.
+            ● Un array con las unidades disponibles de cada producto.
+            La posición de cada producto debe coincidir con la posición de su stock. Por ejemplo:
+            productos = ['Teclado', 'Ratón', 'Monitor', 'Impresora']
+            stock = [12, 5, 8, 3]
+            El programa deberá estar dividido en diferentes funciones, que trabajarán
+            conjuntamente para gestionar el almacén.
+            Funciones que debe incluir el programa:
+            ● Buscar un producto: Crear una función que reciba el nombre de un producto y
+            busque su posición dentro del array de productos. La función deberá devolver la
+            posición encontrada.
+            Si el producto no existe, deberá devolver un valor que permita detectarlo.
+            ● Consultar el stock: Crear una función que reciba el nombre de un producto y muestre
+            las unidades disponibles. Esta función deberá utilizar la función anterior para
+            localizar el producto.
+            ● Modificar el stock: Crear una función que reciba el nombre de un producto y una
+            nueva cantidad de unidades, y actualice su stock. Para localizar el producto deberá
+            utilizar la función de búsqueda (la de consultar stock).
+            ● Mostrar productos con poco stock: crear una función que reciba una cantidad y
+            muestre todos los productos cuyo stock sea inferior a dicha cantidad.
+            ● Calcular el stock total: crear una función que recorra el array de stock y calcule
+            cuántas unidades hay almacenadas en total. La función deberá devolver el
+            resultado.
+            ● Mostrar el almacén: Crear una función que muestre todos los productos junto con
+            sus unidades disponibles.
+            Una vez creadas las funciones anteriores, desarrolla un programa principal que permita
+            utilizar todas ellas mediante un menú.
+            El menú deberá mostrarse repetidamente hasta que el usuario seleccione la opción de salir:
+            1. Mostrar todos los productos
+            2. Consultar el stock de un producto
+            3. Modificar el stock de un producto
+            4. Mostrar productos con poco stock
+            5. Mostrar el total de unidades almacenadas
+            6. Salir
+            Cada opción del menú deberá llamar a la función correspondiente. El programa
+            deberá controlar también que el usuario introduzca una opción válida.*/
+
+            let productos = ['Teclado', 'Ratón', 'Monitor', 'Impresora'];
+        let stock = [12, 5, 8, 3];
+
+        function buscarProducto(nombre) {
+            let nombreBuscado = nombre.toLowerCase();
+            for (let i = 0; i < productos.length; i++) {
+                if (productos[i].toLowerCase() === nombreBuscado) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function consultarStock(nombre) {
+            let posicion = buscarProducto(nombre);
+            if (posicion !== -1) {
+                document.write("El stock de <b>" + productos[posicion] + "</b> es de " + stock[posicion] + " unidades.<br><hr>");
+            } else {
+                document.write("<span style='color:red;'>Error: El producto '" + nombre + "' no existe en el almacén.</span><br><hr>");
+            }
+        }
+
+        function modificarStock(nombre, nuevaCantidad) {
+            let posicion = buscarProducto(nombre);
+            if (posicion !== -1) {
+                stock[posicion] = nuevaCantidad;
+                document.write("Stock actualizado. <b>" + productos[posicion] + "</b> ahora tiene " + stock[posicion] + " unidades.<br><hr>");
+            } else {
+                document.write("<span style='color:red;'>Error: El producto '" + nombre + "' no existe en el almacén.</span><br><hr>");
+            }
+        }
+
+        function mostrarPocoStock(cantidadMinima) {
+            let mensaje = "<b>Productos con menos de " + cantidadMinima + " unidades:</b><br>";
+            let encontrados = false;
+
+            for (let i = 0; i < stock.length; i++) {
+                if (stock[i] < cantidadMinima) {
+                    mensaje += "- " + productos[i] + ": " + stock[i] + " unidades<br>";
+                    encontrados = true;
+                }
+            }
+
+            if (encontrados === false) {
+                mensaje += "Ningún producto tiene un stock tan bajo.<br>";
+            }
+            
+            document.write(mensaje + "<hr>");
+        }
+
+        function calcularStockTotal() {
+            let total = 0;
+            for (let i = 0; i < stock.length; i++) {
+                total += stock[i];
+            }
+            return total;
+        }
+
+        function mostrarAlmacen() {
+            let mensaje = "<b>INVENTARIO DEL ALMACÉN:</b><br>";
+            for (let i = 0; i < productos.length; i++) {
+                mensaje += productos[i] + " -> " + stock[i] + " unidades<br>";
+            }
+            document.write(mensaje + "<hr>");
+        }
+
+        function iniciarMenu() {
+            let opcion;
+
+            do {
+                opcion = prompt(
+                    "--- GESTIÓN DE ALMACÉN ---\n\n" +
+                    "1. Mostrar todos los productos\n" +
+                    "2. Consultar el stock de un producto\n" +
+                    "3. Modificar el stock de un producto\n" +
+                    "4. Mostrar productos con poco stock\n" +
+                    "5. Mostrar el total de unidades almacenadas\n" +
+                    "6. Salir\n\n" +
+                    "Elige una opción (1-6):"
+                );
+
+                if (opcion === null) {
+                    opcion = "6"; 
+                }
+
+                switch (opcion) {
+                    case "1":
+                        mostrarAlmacen();
+                        break;
+                    case "2":
+                        let prodConsultar = prompt("¿Qué producto quieres consultar?");
+                        if (prodConsultar) {
+                            consultarStock(prodConsultar);
+                        }
+                        break;
+                    case "3":
+                        let prodModificar = prompt("¿Qué producto quieres modificar?");
+                        if (prodModificar) {
+                            let nuevaCantidad = parseInt(prompt("Introduce la nueva cantidad:"));
+                            if (!isNaN(nuevaCantidad) && nuevaCantidad >= 0) {
+                                modificarStock(prodModificar, nuevaCantidad);
+                            } else {
+                                document.write("<span style='color:red;'>Error: La cantidad debe ser un número válido.</span><br><hr>");
+                            }
+                        }
+                        break;
+                    case "4":
+                        let cantidadMinima = parseInt(prompt("Introduce el límite de stock:"));
+                        if (!isNaN(cantidadMinima)) {
+                            mostrarPocoStock(cantidadMinima);
+                        } else {
+                            document.write("<span style='color:red;'>Error: Debes introducir un número para el límite.</span><br><hr>");
+                        }
+                        break;
+                    case "5":
+                        let totalUnidades = calcularStockTotal();
+                        document.write("En el almacén hay un total de <b>" + totalUnidades + "</b> unidades almacenadas.<br><hr>");
+                        break;
+                    case "6":
+                        document.write("<b>Cerrando el programa de gestión. ¡Hasta luego!</b><br><hr>");
+                        break;
+                    default:
+                        document.write("<span style='color:red;'>Opción no válida. Por favor, introduce un número del 1 al 6.</span><br><hr>");
+                        break;
+                }
+
+            } while (opcion !== "6");
+        }
+
+        iniciarMenu();
+            
+            
+        </script>
+    </body>
+</html>

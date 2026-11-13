@@ -1,0 +1,21 @@
+<html>
+<body>
+
+    <script type="text/javascript">
+        /* 18. Se ingresan tres valores por teclado, si todos son iguales se imprime la
+        suma del primero con el segundo y a este resultado se lo multiplica por el
+        tercero (tener en cuenta que puede haber tres condiciones simples) */
+        
+        var num1 = parseInt(prompt("Ingresa el primer numero:"));
+        var num2 = parseInt(prompt("Ingresa el segundo numero:"));
+        var num3 = parseInt(prompt("Ingresa el tercer numero:"));
+
+        if (num1 === num2 && num1 === num3) {
+            var suma = num1 + num2;
+            var resultado = suma * num3;
+            document.write("El resultado de la suma multiplicada por el tercero es: " + resultado);
+        }
+    </script>
+
+</body>
+</html>

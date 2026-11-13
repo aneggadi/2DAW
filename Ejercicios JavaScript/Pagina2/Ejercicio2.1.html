@@ -1,0 +1,45 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*1. Diseñar un programa que obtenga el salario neto de n trabajadores de acuerdo a las
+            siguientes premisas
+            • Las 38 primeras horas semanales se cobran a la tarifa ordinaria.
+            • Cualquier hora extra realizada se cobra a 1.5 veces la tarifa ordinaria.
+            • Los primeros 1000€ están libres de impuestos.
+            • Los siguientes 3000€ están sometidos a unas retenciones del 25% y los
+            restantes al 45%.
+            Pedir por teclado el número de trabajadores y la tarifa ordinaria (€ por hora), así como el
+            número de horas que trabaja cada trabajador por semana. Si el trabajador1 trabaja 40 horas
+            a la semana, trabajara 40x4 horas al mes.*/
+
+            let numTrabajadores = parseInt(prompt("Introduce el número de trabajadores:"));
+            let tarifaOrdinaria = parseInt(prompt("Introduce la tarifa ordinaria (€ por hora):"));
+            let horasSemanales = parseInt(prompt("Introduce el número de horas que trabaja cada trabajador por semana:"));
+            
+            let horasMensuales = horasSemanales * 4;
+            let salarioBruto = 0;
+            let salarioNeto = 0;
+
+            for (let i = 1; i <= numTrabajadores; i++) {
+                let horasExtra = 0;
+                if (horasMensuales > 38 * 4) {
+                    horasExtra = horasMensuales - (38 * 4);
+                }
+                salarioBruto = (38 * 4 * tarifaOrdinaria) + (horasExtra * tarifaOrdinaria * 1.5);
+                
+                if (salarioBruto <= 1000) {
+                    salarioNeto = salarioBruto;
+                } else if (salarioBruto <= 4000) {
+                    salarioNeto = salarioBruto - ((salarioBruto - 1000) * 0.25);
+                } else {
+                    salarioNeto = salarioBruto - ((3000 * 0.25) + ((salarioBruto - 4000) * 0.45));
+                }
+
+                document.writeln("El salario neto del trabajador " + i + " es: " + salarioNeto.toFixed(2) + "<br>");
+            }
+
+            
+            
+        </script>
+    </body>
+</html>

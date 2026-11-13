@@ -1,0 +1,38 @@
+<html>
+    <body>
+        <script type="text/javascript">
+            let nombres = ["Diego", "Marcos", "Alvaro", "Carlos", "Jose", "Omar", "Jusep", "Juan", "Pedro", "Luis"];
+            let nombres_con_a = 0;
+            let nombre_mas_largo = nombres[0];
+            let nombre_mas_corto = nombres[0];
+
+            for (let i = 0; i < nombres.length; i++) {
+                let nombre_actual = nombres[i];
+                let nombre_minuscula = nombre_actual.toLowerCase(); // Convertimos a minúscula para la validación de la 'a'
+
+                document.write("<b>Nombre original:</b> " + nombre_actual + "<br>");
+                document.write("Nombre en mayúsculas: " + nombre_actual.toUpperCase() + "<br>");
+                document.write("Nombre en minúsculas: " + nombre_minuscula + "<br>");
+                document.write("Número de caracteres: " + nombre_actual.length + "<br>");
+                
+                if (nombre_minuscula.includes("a")){
+                    document.write("El nombre contiene la letra 'a'.<br>");
+                    document.write("La posición de la primera 'a' es: " + nombre_minuscula.indexOf("a") + "<br>");
+                    nombres_con_a += 1;                  
+                }
+
+                if (nombre_actual.length > nombre_mas_largo.length) {
+                    nombre_mas_largo = nombre_actual;
+                }
+                if (nombre_actual.length < nombre_mas_corto.length) {
+                    nombre_mas_corto = nombre_actual;
+                }
+                document.write("<hr>"); 
+            }
+            document.write("<h3>Resultados Finales:</h3>");
+            document.write("Cantidad de nombres que tienen la 'a': " + nombres_con_a + "<br>");
+            document.write("El nombre más largo es: " + nombre_mas_largo + "<br>");
+            document.write("El nombre más corto es: " + nombre_mas_corto + "<br>");
+        </script>
+    </body>
+</html>

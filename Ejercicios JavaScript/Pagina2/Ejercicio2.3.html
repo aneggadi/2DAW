@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <script type = "text/javascript">
+            /*3. Crear una función que calcule la temperatura media de un día a partir de la
+            temperatura máxima y mínima. Crear un programa principal, que utilizando la
+            función anterior, vaya pidiendo la temperatura máxima y mínima de cada día y vaya
+            mostrando la media. El programa pedirá el número de días que se van a introducir. Nota: Si
+            se te ocurre alguna otra función puedes utilizarla.*/
+
+            function temp_media(temp_max,temp_min){
+                let temperatura_media =( temp_max + temp_min)/2
+                return temperatura_media
+            }
+            let dias = parseInt(prompt("Cuantos dias quieres la media de temperatura? "))
+
+            for (let i = 0; i < dias; i++){
+                let temperatura_max = parseInt(prompt("Introduzca la temperatura maxima del dia " + (i +1)))
+                let temperatura_min = parseInt(prompt("Introduzca la temperatura minima del dia " + (i+1)))
+
+                document.write("La temperatura media del dia " + i + " es: " + temp_media(temperatura_max,temperatura_min) + "<br>")
+
+            }
+
+            
+            
+        </script>
+    </body>
+</html>
