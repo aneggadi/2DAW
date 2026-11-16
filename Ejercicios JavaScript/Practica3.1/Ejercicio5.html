@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 5 - Reserva de Hotel</title>
+</head>
+<body>
+    <form id="formHotel" action="" method="">
+        <label for="nombre">Nombre y apellidos:</label>
+        <input type="text" id="nombre"><br>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="text" id="correo"><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" placeholder="+34 911222333"><br>
+
+        <label for="habitacion">Tipo de habitación:</label>
+        <select id="habitacion">
+            <option value="">-- Selecciona habitación --</option>
+            <option value="individual">Individual</option>
+            <option value="doble">Doble</option>
+            <option value="suite">Suite</option>
+        </select><br>
+
+        <label for="huespedes">Número de huéspedes:</label>
+        <input type="text" id="huespedes"><br>
+
+        <label for="fechaEntrada">Fecha de entrada:</label>
+        <input type="date" id="fechaEntrada"><br>
+
+        <label for="fechaSalida">Fecha de salida:</label>
+        <input type="date" id="fechaSalida"><br>
+
+        Servicios adicionales:<br>
+        <input type="checkbox" name="servicios" id="desayuno" value="desayuno">
+        <label for="desayuno">Desayuno</label>
+        <input type="checkbox" name="servicios" id="parking" value="parking">
+        <label for="parking">Parking</label>
+        <input type="checkbox" name="servicios" id="spa" value="spa">
+        <label for="spa">Acceso al spa</label><br>
+
+        <input type="submit" value="Reservar">
+    </form>
+
+    <script>
+        const formHotel = document.getElementById("formHotel");
+
+formHotel.addEventListener("submit", (evt) => {
+    const errores = [];
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const habitacion = document.getElementById("habitacion").value;
+    const huespedesStr = document.getElementById("huespedes").value.trim();
+    const fechaEntrada = document.getElementById("fechaEntrada").value;
+    const fechaSalida = document.getElementById("fechaSalida").value;
+    const serviciosMarcados = document.querySelectorAll('input[name="servicios"]:checked');
+
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regexTelefonoIntl = /^\+\d{2,3} \d{9}$/;
+    const huespedes = Number(huespedesStr);
+
+    // Fecha actual formateada como AAAA-MM-DD en hora local
+    const hoyObj = new Date();
+    const anio = hoyObj.getFullYear();
+    const mes = String(hoyObj.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoyObj.getDate()).padStart(2, "0");
+    const fechaActual = `${anio}-${mes}-${dia}`;
+
+    if (nombre === "") {
+        errores.push("- El nombre y apellidos son obligatorios.");
+    }
+
+    if (!regexCorreo.test(correo)) {
+        errores.push("- El correo electrónico no tiene un formato válido.");
+    }
+
+    if (!regexTelefonoIntl.test(telefono)) {
+        errores.push("- El teléfono debe tener el formato +XX 999999999 (o +XXX).");
+    }
+
+    if (habitacion === "") {
+        errores.push("- Debes seleccionar un tipo de habitación.");
+    }
+
+    if (huespedesStr === "" || isNaN(huespedes) || huespedes < 1 || huespedes > 6) {
+        errores.push("- El número de huéspedes debe ser un valor numérico entre 1 y 6.");
+    }
+
+    if (fechaEntrada === "" || fechaSalida === "") {
+        errores.push("- Es obligatorio seleccionar una fecha de entrada y una fecha de salida.");
+    } else {
+        if (fechaEntrada < fechaActual) {
+            errores.push("- La fecha de entrada debe ser igual o posterior al día actual.");
+        }
+        if (fechaEntrada >= fechaSalida) {
+            errores.push("- La fecha de entrada debe ser estrictamente anterior a la fecha de salida.");
+        }
+    }
+
+    if (serviciosMarcados.length === 0) {
+        errores.push("- Debes seleccionar al menos un servicio adicional.");
+    }
+
+    if (errores.length > 0) {
+        alert("Corrige los siguientes errores en la reserva:\n\n" + errores.join("\n"));
+        evt.preventDefault();
+    }
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Registro</title>
+</head>
+<body>
+    <form id="formRegistro" action="" method="">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre"><br>
+
+        <label for="apellido1">Primer Apellido:</label>
+        <input type="text" id="apellido1"><br>
+
+        <label for="apellido2">Segundo Apellido (opcional):</label>
+        <input type="text" id="apellido2"><br>
+
+        <label for="usuario">Nombre de usuario:</label>
+        <input type="text" id="usuario"><br>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="text" id="correo"><br>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password"><br>
+
+        <label for="password2">Repetir contraseña:</label>
+        <input type="password" id="password2"><br>
+
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad"><br>
+
+        <input type="checkbox" id="condiciones">
+        <label for="condiciones">Acepto las condiciones de uso</label><br>
+
+        <input type="submit" value="Registrar">
+    </form>
+
+    <script>
+        const formRegistro = document.getElementById("formRegistro");
+
+formRegistro.addEventListener("submit", (evt) => {
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido1 = document.getElementById("apellido1").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const password = document.getElementById("password").value;
+    const password2 = document.getElementById("password2").value;
+    const edadStr = document.getElementById("edad").value.trim();
+    const condiciones = document.getElementById("condiciones").checked;
+
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const edad = Number(edadStr);
+
+    if (nombre === "") {
+        alert("El nombre es obligatorio.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (apellido1 === "") {
+        alert("El primer apellido es obligatorio.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (usuario.length < 5 || usuario.length > 15) {
+        alert("El nombre de usuario debe tener entre 5 y 15 caracteres.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (!regexCorreo.test(correo)) {
+        alert("El correo electrónico no tiene un formato válido.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (password.length < 8) {
+        alert("La contraseña debe tener una longitud mínima de 8 caracteres.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (password !== password2) {
+        alert("Las contraseñas no coinciden.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (edadStr === "" || isNaN(edad) || edad < 18 || edad > 100) {
+        alert("La edad debe ser un valor numérico entre 18 y 100 años.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (!condiciones) {
+        alert("Debes aceptar las condiciones de uso.");
+        evt.preventDefault();
+        return;
+    }
+});
+    </script>
+</body>
+</html>

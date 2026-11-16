@@ -1,4 +1,3 @@
-que una cookie guarde el nombre del usuario, que luego lo muestre y que este la opcion de borrar el nombre de ususario (borrar la cookie)
 <?php 
     //CREAR COOKIE
     if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nombre'])){
@@ -12,6 +11,9 @@ que una cookie guarde el nombre del usuario, que luego lo muestre y que este la 
     if(isset($_COOKIE['nombre_usuario'])){
         setcookie("nombre_usuario", $nombre, time() - 3600);
         unset($_COOKIE['nombre_usuario']);
+
+        header("Location: cookies.php");
+        exit;
     }
 ?>
 
@@ -23,8 +25,16 @@ que una cookie guarde el nombre del usuario, que luego lo muestre y que este la 
     <title>Document</title>
 </head>
 <body>
+
     <!--Mostrar Usuario -->
+    <!-- pongo mi etiqueta php con el codicinal correspondiente  -->
+    <!-- muestro una etiqueta p con el nombre del usuario -->
+    <!-- muestro el enlace olvidarme -->
 
     <!-- Mostrar Formulario -->
+    <!-- etiqueta php cierro condiciona y pongo else -->
+    <!-- muestro el formulario con input y boton -->
+    <!-- cierro el else -->
+
 </body>
 </html>

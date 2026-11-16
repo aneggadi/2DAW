@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - Competición Deportiva</title>
+</head>
+<body>
+    <form id="formDeporte" action="" method="">
+        <label for="nombreCompleto">Nombre y apellidos:</label>
+        <input type="text" id="nombreCompleto"><br>
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" placeholder="12345678Z"><br>
+
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad"><br>
+
+        <label for="deporte">Deporte:</label>
+        <select id="deporte">
+            <option value="">-- Selecciona un deporte --</option>
+            <option value="futbol">Fútbol</option>
+            <option value="baloncesto">Baloncesto</option>
+            <option value="tenis">Tenis</option>
+            <option value="natacion">Natación</option>
+        </select><br>
+
+        Modalidad de participación:<br>
+        <input type="radio" name="modalidad" id="modIndividual" value="individual">
+        <label for="modIndividual">Individual</label>
+        <input type="radio" name="modalidad" id="modEquipos" value="equipos">
+        <label for="modEquipos">Por equipos</label><br>
+
+        <input type="checkbox" id="tieneEquipo">
+        <label for="tieneEquipo">Ya dispongo de un equipo</label><br>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="text" id="correo"><br>
+
+        <input type="submit" value="Inscribirse">
+    </form>
+
+    <script>
+        const formDeporte = document.getElementById("formDeporte");
+
+function validarDNI(dni) {
+    const regexDNI = /^\d{8}[A-Z]$/;
+    if (!regexDNI.test(dni)) {
+        return false;
+    }
+    const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+    const numero = parseInt(dni.substring(0, 8), 10);
+    const letraIntroducida = dni.charAt(8);
+    const letraCalculada = letras.charAt(numero % 23);
+
+    return letraIntroducida === letraCalculada;
+}
+
+formDeporte.addEventListener("submit", (evt) => {
+    const nombreCompleto = document.getElementById("nombreCompleto").value.trim();
+    const dni = document.getElementById("dni").value.trim();
+    const edadStr = document.getElementById("edad").value.trim();
+    const deporte = document.getElementById("deporte").value;
+    const modalidadSeleccionada = document.querySelector('input[name="modalidad"]:checked');
+    const tieneEquipo = document.getElementById("tieneEquipo").checked;
+    const correo = document.getElementById("correo").value.trim();
+
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const edad = Number(edadStr);
+
+    if (nombreCompleto === "") {
+        alert("El campo nombre y apellidos es obligatorio.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (!validarDNI(dni)) {
+        alert("El DNI debe tener 8 dígitos y una letra mayúscula válida.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (edadStr === "" || isNaN(edad) || edad < 16 || edad > 65) {
+        alert("La edad debe ser un valor numérico entre 16 y 65 años.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (deporte === "") {
+        alert("Debes seleccionar un deporte.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (!modalidadSeleccionada) {
+        alert("Debes seleccionar una modalidad de participación.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (modalidadSeleccionada.value === "equipos" && !tieneEquipo) {
+        alert("Para participar por equipos debes marcar que ya dispones de un equipo.");
+        evt.preventDefault();
+        return;
+    }
+
+    if (!regexCorreo.test(correo)) {
+        alert("El correo electrónico no tiene un formato válido.");
+        evt.preventDefault();
+        return;
+    }
+});
+    </script>
+</body>
+</html>
