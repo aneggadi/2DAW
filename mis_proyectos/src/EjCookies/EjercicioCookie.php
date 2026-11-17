@@ -8,7 +8,7 @@
         exit;
     }
     //BORRAR COOKIE
-    if(isset($_COOKIE['nombre_usuario'])){
+    if($_SERVER['REQUEST_METHOD'] === 'POST' &6 isset($_COOKIE['nombre_usuario'])){
         setcookie("nombre_usuario", $nombre, time() - 3600);
         unset($_COOKIE['nombre_usuario']);
 
@@ -38,3 +38,9 @@
 
 </body>
 </html>
+
+<!-- 
+    mensaje bienvendio a la pagina y un boton de zona admin para crear una sesion 
+    (ya se por get o por post) donde se le va a poner la hora en la que se ha registrado, 
+    se cogera el $_SESSION se le dara una clave/valor = date('H:i:s'); 
+ -->

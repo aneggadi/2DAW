@@ -129,3 +129,5 @@ if ($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['olvidar'])){
 
 </body>
 </html>
+
+<!-- contador que cada vez que refresquemos la pagina aumente -->
