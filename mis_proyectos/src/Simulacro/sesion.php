@@ -47,7 +47,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == '1') {
 <body>
     <h1>Carrito</h1>
 
-    <form action="sesion.php" method="POST">
+    <form action="" method="POST">
         <input type="text" name="producto">
         <button type="submit">Añadir</button>
     </form>
