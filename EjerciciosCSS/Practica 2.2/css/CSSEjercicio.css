@@ -1,0 +1,219 @@
+/* === IMPORTANTE ===================================================
+   No modificar estos estilos, ya que son imprescindibles para
+   que la página se vea correctamente.
+   ================================================================== */
+
+/*-- Básico ----------------------------------------------------------*/
+ul, ul li { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, p, form { margin: 0; padding: 0; }
+.clear { clear: both; }
+img { border: none; }
+
+/*-- Layout ----------------------------------------------------------*/
+.contenedor {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cabecera, .menu, .lateral, .contenido, .contenido .principal, .contenido .secundario, .pie {
+  border: 2px solid #777;
+}
+
+.cabecera { clear: both; }
+.menu { clear: both; }
+.lateral { float: left; width: 20%; }
+.contenido { float: right; width: 78%; }
+.contenido .principal { float: left; width: 68%; }
+.contenido .secundario { float: right; width: 25%; }
+.pie { clear: both; }
+
+/*-- Cabecera --------------------------------------------------------*/
+.cabecera .logo { float: left; }
+.cabecera .buscador { float: right; }
+
+/*-- Menu ------------------------------------------------------------*/
+.menu ul.menu_principal li { display: inline; float: left; }
+
+/*-- Sección Principal -----------------------------------------------*/
+.contenido .principal .articulo img { width: 100px; float: left; }
+
+/*-- Pie de página ---------------------------------------------------*/
+.pie .enlaces   { float: left; }
+.pie .copyright { float: right; }
+
+/* === IMPORTANTE ===================================================
+   A partir de aquí, se pueden añadir todos los estilos propios que 
+   sean necesarios.
+   ================================================================== */
+
+/* ==================================================================
+   EJERCICIO 4 (Base tipográfica general)
+   ================================================================== */
+body {
+  color: black;
+  font-family: Arial, sans-serif;
+  font-size: 0.9em;
+  line-height: 1.4em;
+}
+
+p {
+  margin: 0.3em 0;
+}
+
+/* ==================================================================
+   EJERCICIO 1 (Márgenes y rellenos)
+   ================================================================== */
+.cabecera {
+  padding: 1em;
+}
+
+.menu {
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.noticias, .publicidad, .principal, .secundario {
+  padding: 0.5em;
+}
+
+.pie {
+  padding: 0.5em 0;
+  margin-top: 1em;
+}
+
+.articulo {
+  margin-bottom: 1em;
+}
+
+.articulo img {
+  margin: 0.5em;
+}
+
+.publicidad {
+  margin-top: 1em;
+}
+
+/* ==================================================================
+   EJERCICIO 2 (Bordes)
+   ================================================================== */
+.cabecera, .menu, .lateral, .contenido, .contenido .principal, .contenido .secundario, .pie {
+  border: none;
+}
+
+.menu {
+  border-bottom: 1px solid #004C99;
+}
+
+.noticias {
+  border: 1px solid #C5C5C5;
+}
+
+.publicidad {
+  border: 1px dashed #CC6600;
+}
+
+.contenido .secundario {
+  border: 1px solid #CC6600;
+}
+
+.pie {
+  border-top: 1px solid #C5C5C5;
+  border-bottom: 1px solid #C5C5C5;
+}
+
+/* ==================================================================
+   EJERCICIO 3 (Colores e imágenes de fondo)
+   ================================================================== */
+.noticias, .pie {
+  background-color: #F8F8F8;
+}
+
+.publicidad {
+  background-color: #FFF6CD;
+}
+
+.secundario h2 {
+  background-color: #DB905C;
+  padding: 0.2em;
+}
+
+.menu {
+  background-image: url("../imagenes/fondo_menu.gif");
+  background-repeat: repeat-x;
+}
+
+.cabecera .logo h1 {
+  background-image: url("../imagenes/logo.gif");
+  background-repeat: no-repeat;
+  width: 170px;
+  height: 45px;
+}
+
+.cabecera .logo h1 span {
+  display: none;
+}
+
+/* ==================================================================
+   EJERCICIO 4 (Tipografía específica y acabados)
+   ================================================================== */
+.articulo h2 {
+  color: #CC6600;
+  font-size: 1.6em;
+  line-height: 1.2;
+  margin-bottom: 0.3em;
+}
+
+.menu ul.menu_principal li {
+  margin-right: 1em;
+}
+
+.menu ul.menu_principal li a {
+  color: white;
+  font-size: 1.3em;
+}
+
+.lateral {
+  font-size: 0.9em;
+}
+
+.noticias .fecha {
+  display: block;
+  color: #999;
+}
+
+.noticias h3, .noticias h3 a {
+  color: #003366;
+}
+
+.publicidad {
+  color: #555;
+}
+
+.publicidad a {
+  color: #CC6600;
+}
+
+.articulo a {
+  color: #CC6600;
+}
+
+/* Apartado 7: Aspecto de #secundario según imagen */
+.secundario h2 {
+  color: white;
+  font-size: 1em;
+}
+
+.secundario a {
+  color: #2c00cc;
+}
+
+/* Apartado 8: Aspecto de #pie según imagen */
+.pie {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.pie .enlaces a {
+  color: #003366;
+}
