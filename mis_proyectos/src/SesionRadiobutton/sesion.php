@@ -78,3 +78,6 @@ if (isset($_GET['logout']) && $_GET['logout'] == '1') {
     </p>
 </body>
 </html>
+gestion de libros de biblioteca(añadir borrar gestionar libros) y con gestion de sesion si se puede, 
+con php html css (javascript opcional pero simple) y que persista en bbdd, que pregunte que condenedor
+ de mysql tengo (tengo pdo) como cambiarlo a mysqli (explicar el entorno)
