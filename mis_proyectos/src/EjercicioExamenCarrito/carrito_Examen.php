@@ -15,7 +15,20 @@
         header('Location:carrito_Examen.php');
         exit;
     }
+    if(isset($_GET['borrar']) && $_GET['borrar']){
+        $_SESSION['carrito'] = [];
 
+        header('Location:carrito_Examen.php');
+        exit;
+    }
+
+    if(isset($_GET['logout']) && $_GET['logout']){
+        $_SESSION = [];
+        session_destroy();
+
+        header('Location:carrito_Examen.php');
+        exit;
+    }
 
 ?>
 
@@ -168,7 +181,7 @@
             <img src="https://picsum.photos/seed/p4/300/200" alt="Producto 4">
             <h2>Auriculares Gaming</h2>
             <p class="precio">35.90 €</p>
-                <button class="btn-carrito" type = "submit" name="producto_id" value="">Añadir al carrito</button>
+                <button class="btn-carrito" type = "submit" name="producto_id" value="Auriculares Gaming">Añadir al carrito</button>
             </div>
         </form>
 
@@ -178,7 +191,7 @@
             <img src="https://picsum.photos/seed/p5/300/200" alt="Producto 5">
             <h2>Alfombrilla XL</h2>
             <p class="precio">15.00 €</p>
-                <button class="btn-carrito" type = "submit" name="producto_id" value="5">Añadir al carrito</button>
+                <button class="btn-carrito" type = "submit" name="producto_id" value="Alfombrilla XL">Añadir al carrito</button>
             </div>
         </form>
 
@@ -188,15 +201,15 @@
             <img src="https://picsum.photos/seed/p6/300/200" alt="Producto 6">
             <h2>Webcam Full HD</h2>
             <p class="precio">49.99 €</p>
-                <button class="btn-carrito" type = "submit" name="producto_id" value="6">Añadir al carrito</button>
+                <button class="btn-carrito" type = "submit" name="producto_id" value="Webcam Full HD">Añadir al carrito</button>
             </div>
         </form>
 
 
     <!-- Botón/enlace de ejemplo para que los alumnos programen a dónde va -->
-    <?php if(!$_GET['vercarrito']){ ?>
+    <?php if(!isset($_GET['vercarrito'])){ ?>
         <a href="carrito_Examen.php?vercarrito=1" class="btn-ver-carrito">Ver mi carrito</a>
-        
+    
     <?php } else{
         foreach($_SESSION['carrito'] as $producto => $cantidad){
             echo '<li>' . htmlspecialchars($producto) . ' x ' . $cantidad . '</li>';
@@ -204,6 +217,7 @@
     }
     ?>
     <a href="carrito_Examen.php?borrar=1" class="btn-ver-carrito">Borrar Carrito </a>
+    <a href="carrito_Examen.php?logout=1" class="btn-ver-carrito">Cerrar sesion</a>
 
 </body>
 </html>
